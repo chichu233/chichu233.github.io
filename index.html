@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #293953; /* 保持不变 */
+            --primary: #293953;
             --secondary: #5a6b8c;
             --accent: #3a6ea5;
             --light: #f0f4f8;
@@ -15,8 +16,8 @@
             --gray: #7a8ba6;
             --columbia-blue: #5a8cbf;
             --tsinghua-red: #a6192e;
-            --brown:#4a4a4a;
-            --green:#2d5732;
+            --brown: #4a4a4a;
+            --green: #2d5732;
             --link-color: #3a6ea5;
             --link-hover: #2a5f8a;
         }
@@ -29,7 +30,7 @@
         }
 
         body {
-            background-image: url("background.jpg");
+            background-image: url(https://images.pexels.com/photos/5553026/pexels-photo-5553026.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -133,6 +134,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
+            font-weight: 500;
         }
 
         .about-text p {
@@ -140,58 +142,28 @@
             color: var(--brown);
         }
 
+        /* Updated Education Section Styles */
         .education-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 1rem;
         }
 
-        .education-item:last-child {
-            border-bottom: none;
+        .education-content {
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         .education-degree {
             font-weight: 600;
-            font-size: 1.1rem;
             color: var(--dark);
         }
 
         .education-school {
-            color: var(--accent);
-            margin: 0.3rem 0;
-        }
-
-        .education-period {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .interests-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1rem;
-            list-style: none;
-        }
-
-        .interest-item {
-            background: var(--light);
-            padding: 1.2rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--columbia-blue);
-        }
-
-        .interest-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .education-school {
             position: relative;
-            color: var(--accent);
+            font-weight: 600;
+            color: var(--dark);
             display: inline-block;
         }
-        
+
         .school-link {
             position: absolute;
             top: 0;
@@ -201,18 +173,64 @@
             z-index: 1;
             opacity: 0;
         }
-        
+
         .education-school:hover {
             cursor: pointer;
         }
-        
+
         .education-school:hover .school-text {
             text-decoration: underline;
             text-decoration-thickness: 1px;
             text-underline-offset: 2px;
         }
 
-        /* 链接颜色设置 */
+        .education-period {
+            color: var(--gray);
+        }
+
+        .interests-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .interest-item {
+            position: relative;
+            background: rgba(240, 244, 248, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 1.2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            overflow: hidden;
+        }
+
+        .interest-item:hover {
+            background: rgba(240, 244, 248, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            padding-bottom: 2.5rem;
+        }
+
+
+        .interest-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .interest-item div:not(.interest-title) {
+            color: var(--brown);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
         a {
             color: var(--link-color);
             text-decoration: none;
@@ -242,6 +260,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="header-area">
         <div class="header-content">
@@ -251,9 +270,9 @@
             </div>
             <nav class="nav-menu">
                 <a href="#about" class="nav-link">Home</a>
-                <a href="projects.html" class="nav-link">Projects</a>
-                <a href="#research" class="nav-link">E-mail</a>
-                <a href="Jianxing_CV.pdf" class="nav-link" target="_blank">CV</a>
+                <a href="#projects.html" class="nav-link">Projects</a>
+                <a href="jc6183@columbia.edu" class="nav-link">E-mail</a>
+                <a href="#CV" class="nav-link">CV</a>
             </nav>
         </div>
     </div>
@@ -263,12 +282,16 @@
             <h2 class="section-title">About</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I'm a MS student in Electrical Engineering at Columbia University (Data-Driven Analysis and Computation specialization), with a strong interest in pursuing a PhD.</p>
-                    <p>Previously, I obtained a B.E. in Communication Engineering in UESTC (the University of Electronic Science and Technology of China).</p>
+                    <p>I'm a MS student in Electrical Engineering at Columbia University (Data-Driven Analysis and
+                        Computation specialization), with a strong interest in pursuing a PhD.</p>
+                    <p>Previously, I obtained a B.E. in Communication Engineering in UESTC (the University of Electronic
+                        Science and Technology of China).</p>
                 </div>
                 <div class="about-text">
-                    <p>My research lies in the data-driven decision and stochastic optimization. Specifically, I develop algorithms that adopts machine learning methods and data to realize better decision.</p>
-                    <p>I also study extended topics like privacy and fairness concerns in the data-driven optimization and online learning problems.</p>
+                    <p>My research lies in the data-driven decision and stochastic optimization. Specifically, I develop
+                        algorithms that adopts machine learning methods and data to realize better decision.</p>
+                    <p>I also study extended topics like privacy and fairness concerns in the data-driven optimization
+                        and online learning problems.</p>
                 </div>
             </div>
         </section>
@@ -276,40 +299,33 @@
         <section class="section" id="education">
             <h2 class="section-title">Education</h2>
             <div class="education-item">
-                <div class="education-degree">MS in Electrical Engineering</div>
-                <div class="education-school">
-                    <span class="school-text">Columbia University</span>
-                    <a href="https://www.columbia.edu/" target="_blank" rel="noopener noreferrer" class="school-link"></a>
+                <div class="education-content">
+                    <span class="education-degree">MS in Electrical Engineering</span>, 
+                    <span class="education-school">
+                        <span class="school-text">Columbia University</span>
+                        <a href="https://www.columbia.edu/" target="_blank" rel="noopener noreferrer" class="school-link"></a>
+                    </span>, 
+                    <span class="education-degree">Aug. 2025 - Present</span>
                 </div>
-                <div class="education-period">Aug. 2025 - Present</div>
             </div>
             <div class="education-item">
-                <div class="education-degree">B.E. in Communication Engineering</div>
-                <div class="education-school">UESTC</div>
-                <div class="education-period">Aug. 2021 - Jun. 2025</div>
+                <div class="education-content">
+                    <span class="education-degree">B.E. in Communication Engineering</span>, 
+                    <span class="education-school">UESTC</span>, 
+                    <span class="education-degree">Aug. 2021 - Jun. 2025</span>
+                </div>
             </div>
         </section>
 
         <section class="section" id="research">
-            <h2 class="section-title">Research Interests</h2>
+            <h2 class="section-title">Research interest</h2>
             <ul class="interests-list">
-                <li class="interest-item">
-                    <div class="interest-title">Deep Learning</div>
-                    <div>Dynamic Masked Transformer for Human-Object Interaction</div>
-                </li>
-                <li class="interest-item">
-                    <div class="interest-title">Computer Vision</div>
-                    <div>Dynamic Masked Transformer for Human-Object Interaction</div>
-                    <div>Smart camera for Fire Emergency System in Smart City</div>
-                    <div>Recognition Module for Autonomous Vehicle</div>
-                </li>
-                <li class="interest-item">
-                    <div class="interest-title">Embedded Systems</div>
-                    <div>Smart camera for Fire Emergency System in Smart City</div>
-                    <div>Recognition Module for Autonomous Vehicle</div>
-                </li>
+                    <div class="interest-title">Dynamic Masked Transformer for Human-Object Interaction</div>
+                    <div class="interest-title">Smart camera for Fire Emergency System in Smart City</div>
+                    <div class="interest-title">Recognition Module for Autonomous Vehicle</div>
             </ul>
         </section>
     </div>
 </body>
+
 </html>
