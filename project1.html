@@ -288,6 +288,53 @@
     </style>
 </head>
 <body>
+    <div class="header-area">
+        <div class="header-content">
+            <div class="name-title">
+                <h1>Jianxing Chen</h1>
+                <p>MS student in Electrical Engineering at Columbia University</p>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="#research" class="nav-link">Research</a>
+                <a href="#CV" class="nav-link">CV</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <section class="section">
+            <div class="project-header">
+                <h1 class="project-title">Dynamic Masked Transformer for Human-Object Interaction</h1>
+                <div class="project-meta">
+                    <span><i class="fas fa-calendar-alt"></i> January 2023 - Present</span>
+                    <span><i class="fas fa-tags"></i> Computer Vision, Transformer, Deep Learning</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dynamic Masked Transformer" class="project-image-main">
+            </div>
+
+            <div class="project-content">
+                <div class="project-abstract">
+                    <h3>Abstract</h3>
+                    <p>This project introduces a novel transformer-based architecture for detecting human-object interactions (HOI) with dynamic attention masking. Traditional HOI detection methods often struggle with complex scenes containing multiple humans and objects. Our approach dynamically adjusts the attention mechanism based on spatial relationships and semantic relevance between human and object instances.</p>
+                    <p>The key innovation is the Dynamic Masking Module (DMM) that learns to focus on relevant human-object pairs while suppressing irrelevant ones. This significantly reduces computational overhead and improves accuracy. We evaluate our method on two benchmark datasets (HICO-DET and V-COCO), achieving state-of-the-art performance with 5-7% improvement in mean average precision compared to previous approaches.</p>
+                    <p>The model also demonstrates superior generalization capabilities in crowded scenes and shows promising results in real-time applications. This work has potential applications in surveillance, human-robot interaction, and augmented reality systems.</p>
+                </div>
+
+                <div class="project-details">
+                    <h3>Project Details</h3>
+                    <ul>
+                        <li><strong>Technologies:</strong> PyTorch, Transformer Architecture, Computer Vision</li>
+                        <li><strong>Team:</strong> Individual project with advisor consultation</li>
+                        <li><strong>Dataset:</strong> HICO-DET (38,118 images), V-COCO (10,346 images)</li>
+                        <li><strong>Performance:</strong> 32.5 mAP on HICO-DET, 58.7 mAP on V-COCO</li>
+                        <li><strong>Innovation:</strong> Dynamic attention masking reduces computation by 40%</li>
+                        <li><strong>Status:</strong> Ongoing - preparing for journal submission</li>
+                    </ul>
+                </div>
+            </div>
+
     <!-- 保持原有的HTML结构不变，只修改项目画廊部分 -->
     <div class="project-gallery">
         <div class="gallery-image-container">
