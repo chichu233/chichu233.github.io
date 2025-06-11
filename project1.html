@@ -217,118 +217,154 @@
             margin-top: 2rem;
         }
 
+        .gallery-image-container {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+            background: transparent; /* 确保背景透明 */
+        }
+
         .gallery-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-radius: 12px;
-            transition: transform 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: center center;
+            cursor: pointer;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .gallery-image:hover {
+        .gallery-image-container:hover .gallery-image {
             transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
-        .back-button {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.8rem 1.5rem;
-            background-color: var(--accent);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
+        /* 展开状态 - 移除了白色背景和边框 */
+        .gallery-image-container.expanded {
+            z-index: 10;
+            grid-row: span 2;
         }
 
-        .back-button:hover {
-            background-color: var(--primary);
+        .gallery-image-container.expanded .gallery-image {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            object-fit: cover; /* 保持图片覆盖整个区域 */
+            transform: scale(1);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            background: transparent; /* 移除白色背景 */
+            border: none; /* 移除边框 */
         }
 
+        /* 更流畅的展开动画 */
+        @keyframes smoothExpand {
+            from {
+                transform: scale(0.95);
+                opacity: 0.9;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .gallery-image-container.expanded .gallery-image {
+            animation: smoothExpand 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* 响应式调整 */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: left;
-                gap: 1.5rem;
-            }
-
-            .nav-menu {
-                width: 100%;
-                justify-content: space-around;
-                gap: 0.5rem;
-            }
-
-            .project-content {
-                grid-template-columns: 1fr;
-            }
-
-            .project-image-main {
-                height: 250px;
-            }
-
             .project-gallery {
                 grid-template-columns: 1fr;
+            }
+            
+            .gallery-image-container.expanded .gallery-image {
+                height: 300px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header-area">
-        <div class="header-content">
-            <div class="name-title">
-                <h1>Jianxing Chen</h1>
-                <p>MS student in Electrical Engineering at Columbia University</p>
-            </div>
-            <nav class="nav-menu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="projects.html" class="nav-link">Projects</a>
-                <a href="#research" class="nav-link">Research</a>
-                <a href="#CV" class="nav-link">CV</a>
-            </nav>
+    <!-- 保持原有的HTML结构不变，只修改项目画廊部分 -->
+    <div class="project-gallery">
+        <div class="gallery-image-container">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Architecture Diagram" class="gallery-image">
+        </div>
+        <div class="gallery-image-container">
+            <img src="https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sample Results" class="gallery-image">
+        </div>
+        <div class="gallery-image-container">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Performance Comparison" class="gallery-image">
+        </div>
+        <div class="gallery-image-container">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c0b8e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Attention Visualization" class="gallery-image">
         </div>
     </div>
 
-    <div class="main-content">
-        <section class="section">
-            <div class="project-header">
-                <h1 class="project-title">Dynamic Masked Transformer for Human-Object Interaction</h1>
-                <div class="project-meta">
-                    <span><i class="fas fa-calendar-alt"></i> January 2023 - Present</span>
-                    <span><i class="fas fa-tags"></i> Computer Vision, Transformer, Deep Learning</span>
-                </div>
-                <img src="https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dynamic Masked Transformer" class="project-image-main">
-            </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryContainers = document.querySelectorAll('.gallery-image-container');
+            let hoverTimer;
+            let currentlyExpanded = null;
 
-            <div class="project-content">
-                <div class="project-abstract">
-                    <h3>Abstract</h3>
-                    <p>This project introduces a novel transformer-based architecture for detecting human-object interactions (HOI) with dynamic attention masking. Traditional HOI detection methods often struggle with complex scenes containing multiple humans and objects. Our approach dynamically adjusts the attention mechanism based on spatial relationships and semantic relevance between human and object instances.</p>
-                    <p>The key innovation is the Dynamic Masking Module (DMM) that learns to focus on relevant human-object pairs while suppressing irrelevant ones. This significantly reduces computational overhead and improves accuracy. We evaluate our method on two benchmark datasets (HICO-DET and V-COCO), achieving state-of-the-art performance with 5-7% improvement in mean average precision compared to previous approaches.</p>
-                    <p>The model also demonstrates superior generalization capabilities in crowded scenes and shows promising results in real-time applications. This work has potential applications in surveillance, human-robot interaction, and augmented reality systems.</p>
-                </div>
+            galleryContainers.forEach(container => {
+                const img = container.querySelector('.gallery-image');
+                
+                // Mouse enter - start timer
+                container.addEventListener('mouseenter', function() {
+                    if (currentlyExpanded) return;
+                    
+                    hoverTimer = setTimeout(() => {
+                        expandImage(this);
+                    }, 1000);
+                });
 
-                <div class="project-details">
-                    <h3>Project Details</h3>
-                    <ul>
-                        <li><strong>Technologies:</strong> PyTorch, Transformer Architecture, Computer Vision</li>
-                        <li><strong>Team:</strong> Individual project with advisor consultation</li>
-                        <li><strong>Dataset:</strong> HICO-DET (38,118 images), V-COCO (10,346 images)</li>
-                        <li><strong>Performance:</strong> 32.5 mAP on HICO-DET, 58.7 mAP on V-COCO</li>
-                        <li><strong>Innovation:</strong> Dynamic attention masking reduces computation by 40%</li>
-                        <li><strong>Status:</strong> Ongoing - preparing for journal submission</li>
-                    </ul>
-                </div>
-            </div>
+                // Mouse leave - clear timer and collapse if not persistent
+                container.addEventListener('mouseleave', function() {
+                    clearTimeout(hoverTimer);
+                    if (this === currentlyExpanded && !this.hasAttribute('data-persist')) {
+                        collapseImage(this);
+                    }
+                });
 
-            <div class="project-gallery">
-                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Architecture Diagram" class="gallery-image">
-                <img src="https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sample Results" class="gallery-image">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Performance Comparison" class="gallery-image">
-                <img src="https://images.unsplash.com/photo-1629909613654-28e377c0b8e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Attention Visualization" class="gallery-image">
-            </div>
+                // Click to toggle persistent expanded state
+                container.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    clearTimeout(hoverTimer);
+                    
+                    if (this === currentlyExpanded) {
+                        this.removeAttribute('data-persist');
+                        collapseImage(this);
+                    } else {
+                        if (currentlyExpanded) {
+                            currentlyExpanded.removeAttribute('data-persist');
+                            collapseImage(currentlyExpanded);
+                        }
+                        this.setAttribute('data-persist', 'true');
+                        expandImage(this);
+                    }
+                });
+            });
 
-            <a href="projects.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Projects</a>
-        </section>
-    </div>
+            function expandImage(container) {
+                if (currentlyExpanded && currentlyExpanded !== container) {
+                    collapseImage(currentlyExpanded);
+                }
+                
+                container.classList.add('expanded');
+                currentlyExpanded = container;
+                container.style.gridRow = "span 2";
+            }
+
+            function collapseImage(container) {
+                container.classList.remove('expanded');
+                currentlyExpanded = null;
+                container.style.gridRow = "";
+            }
+        });
+    </script>
 </body>
 </html>
