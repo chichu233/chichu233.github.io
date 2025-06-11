@@ -209,7 +209,6 @@
         .project-details li strong {
             color: var(--primary);
         }
-
         .project-gallery {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -257,6 +256,21 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
             background: transparent; /* 移除白色背景 */
             border: none; /* 移除边框 */
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--link-hover);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary);
         }
 
         /* 更流畅的展开动画 */
@@ -335,83 +349,87 @@
                 </div>
             </div>
 
-    <!-- 保持原有的HTML结构不变，只修改项目画廊部分 -->
-    <div class="project-gallery">
-        <div class="gallery-image-container">
-            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Architecture Diagram" class="gallery-image">
-        </div>
-        <div class="gallery-image-container">
-            <img src="https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sample Results" class="gallery-image">
-        </div>
-        <div class="gallery-image-container">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Performance Comparison" class="gallery-image">
-        </div>
-        <div class="gallery-image-container">
-            <img src="https://images.unsplash.com/photo-1629909613654-28e377c0b8e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Attention Visualization" class="gallery-image">
-        </div>
-    </div>
+            <!-- 保持原有的HTML结构不变，只修改项目画廊部分 -->
+            <div class="project-gallery">
+                <div class="gallery-image-container">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Architecture Diagram" class="gallery-image">
+                </div>
+                <div class="gallery-image-container">
+                    <img src="https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sample Results" class="gallery-image">
+                </div>
+                <div class="gallery-image-container">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Performance Comparison" class="gallery-image">
+                </div>
+                <div class="gallery-image-container">
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c0b8e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Attention Visualization" class="gallery-image">
+                </div>
+            </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const galleryContainers = document.querySelectorAll('.gallery-image-container');
-            let hoverTimer;
-            let currentlyExpanded = null;
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const galleryContainers = document.querySelectorAll('.gallery-image-container');
+                    let hoverTimer;
+                    let currentlyExpanded = null;
 
-            galleryContainers.forEach(container => {
-                const img = container.querySelector('.gallery-image');
-                
-                // Mouse enter - start timer
-                container.addEventListener('mouseenter', function() {
-                    if (currentlyExpanded) return;
-                    
-                    hoverTimer = setTimeout(() => {
-                        expandImage(this);
-                    }, 1000);
-                });
+                    galleryContainers.forEach(container => {
+                        const img = container.querySelector('.gallery-image');
+                        
+                        // Mouse enter - start timer
+                        container.addEventListener('mouseenter', function() {
+                            if (currentlyExpanded) return;
+                            
+                            hoverTimer = setTimeout(() => {
+                                expandImage(this);
+                            }, 1000);
+                        });
 
-                // Mouse leave - clear timer and collapse if not persistent
-                container.addEventListener('mouseleave', function() {
-                    clearTimeout(hoverTimer);
-                    if (this === currentlyExpanded && !this.hasAttribute('data-persist')) {
-                        collapseImage(this);
-                    }
-                });
+                        // Mouse leave - clear timer and collapse if not persistent
+                        container.addEventListener('mouseleave', function() {
+                            clearTimeout(hoverTimer);
+                            if (this === currentlyExpanded && !this.hasAttribute('data-persist')) {
+                                collapseImage(this);
+                            }
+                        });
 
-                // Click to toggle persistent expanded state
-                container.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    clearTimeout(hoverTimer);
-                    
-                    if (this === currentlyExpanded) {
-                        this.removeAttribute('data-persist');
-                        collapseImage(this);
-                    } else {
-                        if (currentlyExpanded) {
-                            currentlyExpanded.removeAttribute('data-persist');
+                        // Click to toggle persistent expanded state
+                        container.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            clearTimeout(hoverTimer);
+                            
+                            if (this === currentlyExpanded) {
+                                this.removeAttribute('data-persist');
+                                collapseImage(this);
+                            } else {
+                                if (currentlyExpanded) {
+                                    currentlyExpanded.removeAttribute('data-persist');
+                                    collapseImage(currentlyExpanded);
+                                }
+                                this.setAttribute('data-persist', 'true');
+                                expandImage(this);
+                            }
+                        });
+                    });
+
+                    function expandImage(container) {
+                        if (currentlyExpanded && currentlyExpanded !== container) {
                             collapseImage(currentlyExpanded);
                         }
-                        this.setAttribute('data-persist', 'true');
-                        expandImage(this);
+                        
+                        container.classList.add('expanded');
+                        currentlyExpanded = container;
+                        container.style.gridRow = "span 2";
+                    }
+
+                    function collapseImage(container) {
+                        container.classList.remove('expanded');
+                        currentlyExpanded = null;
+                        container.style.gridRow = "";
                     }
                 });
-            });
+            </script>
 
-            function expandImage(container) {
-                if (currentlyExpanded && currentlyExpanded !== container) {
-                    collapseImage(currentlyExpanded);
-                }
-                
-                container.classList.add('expanded');
-                currentlyExpanded = container;
-                container.style.gridRow = "span 2";
-            }
-
-            function collapseImage(container) {
-                container.classList.remove('expanded');
-                currentlyExpanded = null;
-                container.style.gridRow = "";
-            }
-        });
-    </script>
+            <a href="projects.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </section>
+    </div>
 </body>
 </html>
