@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - Jianxing Chen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #293953;
+            --secondary: #5a6b8c;
+            --accent: #3a6ea5;
+            --light: #f0f4f8;
+            --dark: #1a2639;
+            --gray: #7a8ba6;
+            --columbia-blue: #5a8cbf;
+            --tsinghua-red: #a6192e;
+            --brown: #4a4a4a;
+            --green: #2d5732;
+            --link-color: #3a6ea5;
+            --link-hover: #2a5f8a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-image: url(https://images.pexels.com/photos/5553026/pexels-photo-5553026.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--dark);
+            line-height: 1.7;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .header-area {
+            width: 100%;
+            max-width: 1400px;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto 2rem;
+            border-radius: 0 0 16px 16px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .name-title h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .name-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 0 2rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .project-header {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+        }
+
+        .project-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-image-main {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .project-abstract {
+            background: rgba(240, 244, 248, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-abstract h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .project-abstract p {
+            color: var(--brown);
+            line-height: 1.8;
+        }
+
+        .project-details {
+            background: rgba(240, 244, 248, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .project-details h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .project-details ul {
+            list-style-type: none;
+        }
+
+        .project-details li {
+            margin-bottom: 0.8rem;
+            color: var(--brown);
+        }
+
+        .project-details li strong {
+            color: var(--primary);
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.03);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: var(--link-hover);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: left;
+                gap: 1.5rem;
+            }
+
+            .nav-menu {
+                width: 100%;
+                justify-content: space-around;
+                gap: 0.5rem;
+            }
+
+            .project-content {
+                grid-template-columns: 1fr;
+            }
+
+            .project-image-main {
+                height: 250px;
+            }
+
+            .project-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-area">
+        <div class="header-content">
+            <div class="name-title">
+                <h1>Jianxing Chen</h1>
+                <p>MS student in Electrical Engineering at Columbia University</p>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="#research" class="nav-link">Research</a>
+                <a href="#CV" class="nav-link">CV</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <section class="section">
+            <div class="project-header">
+                <h1 class="project-title">Dynamic Masked Transformer for Human-Object Interaction</h1>
+                <div class="project-meta">
+                    <span><i class="fas fa-calendar-alt"></i> January 2023 - Present</span>
+                    <span><i class="fas fa-tags"></i> Computer Vision, Transformer, Deep Learning</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dynamic Masked Transformer" class="project-image-main">
+            </div>
+
+            <div class="project-content">
+                <div class="project-abstract">
+                    <h3>Abstract</h3>
+                    <p>This project introduces a novel transformer-based architecture for detecting human-object interactions (HOI) with dynamic attention masking. Traditional HOI detection methods often struggle with complex scenes containing multiple humans and objects. Our approach dynamically adjusts the attention mechanism based on spatial relationships and semantic relevance between human and object instances.</p>
+                    <p>The key innovation is the Dynamic Masking Module (DMM) that learns to focus on relevant human-object pairs while suppressing irrelevant ones. This significantly reduces computational overhead and improves accuracy. We evaluate our method on two benchmark datasets (HICO-DET and V-COCO), achieving state-of-the-art performance with 5-7% improvement in mean average precision compared to previous approaches.</p>
+                    <p>The model also demonstrates superior generalization capabilities in crowded scenes and shows promising results in real-time applications. This work has potential applications in surveillance, human-robot interaction, and augmented reality systems.</p>
+                </div>
+
+                <div class="project-details">
+                    <h3>Project Details</h3>
+                    <ul>
+                        <li><strong>Technologies:</strong> PyTorch, Transformer Architecture, Computer Vision</li>
+                        <li><strong>Team:</strong> Individual project with advisor consultation</li>
+                        <li><strong>Dataset:</strong> HICO-DET (38,118 images), V-COCO (10,346 images)</li>
+                        <li><strong>Performance:</strong> 32.5 mAP on HICO-DET, 58.7 mAP on V-COCO</li>
+                        <li><strong>Innovation:</strong> Dynamic attention masking reduces computation by 40%</li>
+                        <li><strong>Status:</strong> Ongoing - preparing for journal submission</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-gallery">
+                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Architecture Diagram" class="gallery-image">
+                <img src="https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sample Results" class="gallery-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Performance Comparison" class="gallery-image">
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c0b8e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Attention Visualization" class="gallery-image">
+            </div>
+
+            <a href="projects.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </section>
+    </div>
+</body>
+</html>
